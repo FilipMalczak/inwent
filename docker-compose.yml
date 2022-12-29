@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  admin:
+    image: ${ADMIN_IMAGE}
+    ports:
+      - "127.0.0.1:8090:8090"
+  backend:
+    image: ${BACKEND_IMAGE}
+    environment:
+      ADMIN_URL: "admin:8090"
+      SPRING_BOOT_ADMIN_CLIENT_INSTANCE_SERVICE_URL: "http://backend:8080"
+    ports:
+      - "127.0.0.1:8080:8080"

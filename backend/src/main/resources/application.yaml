@@ -1,0 +1,32 @@
+api:
+  version: Alpha
+
+spring:
+  application:
+    name: Glorious backend
+  boot:
+    admin:
+      client:
+        url: ${ADMIN_URL:http://localhost:8090}
+
+springdoc:
+  swagger-ui:
+    url: "/v3/api-docs"
+  default-produces-media-type: "application/json"
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+
+#look out! following line fucks up all the other log configs!
+#debug=true
+
+logging:
+  file:
+    name: ${LOGFILE_NAME:./${spring.application.name}_log.txt}
