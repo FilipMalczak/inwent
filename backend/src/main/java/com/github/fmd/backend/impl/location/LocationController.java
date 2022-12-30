@@ -16,12 +16,12 @@ public class LocationController implements LocationAPI {
     }
 
     @Override
-    public Mono<LocationDescriptor> createLocation(CreateLocationRequest body) {
+    public Mono<LocationDescriptor> createLocation(String host, CreateLocationRequest body) {
         return null;
     }
 
     @Override
-    public Mono<LocationDescriptor> makeLocation(CreateLocationRequest body) {
+    public Mono<LocationDescriptor> makeLocation(String host, CreateLocationRequest body) {
         return null;
     }
 }

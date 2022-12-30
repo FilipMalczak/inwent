@@ -2,6 +2,9 @@
 #
 # INCLUDE VIA source INSTEAD
 
+# this is hack for my machine; shouldn't matter on yours ~Filip
+newgrp docker &
+
 
 which_exit_code () {
   which $1 > /dev/null 2> /dev/null
