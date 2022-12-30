@@ -1,6 +1,6 @@
 package com.github.fmd.backend.impl.content;
 
-import com.github.fmd.backend.api.ContentAPI;
+import com.github.fmd.backend.api.domain.ContentAPI;
 import com.github.fmd.backend.api.model.ContentDescriptor;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
@@ -12,8 +12,8 @@ import java.util.UUID;
 @RestController
 public class ContentController implements ContentAPI{
     @Override
-    public Mono<ContentDescriptor> getContent(URI uri) {
-        return Mono.empty();
+    public Mono<ContentDescriptor> getContentById(URI id) {
+        return null;
     }
 
     @Override

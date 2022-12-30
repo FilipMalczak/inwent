@@ -1,6 +1,6 @@
 package com.github.fmd.backend.impl.location;
 
-import com.github.fmd.backend.api.LocationAPI;
+import com.github.fmd.backend.api.domain.LocationAPI;
 import com.github.fmd.backend.api.model.CreateLocationRequest;
 import com.github.fmd.backend.api.model.LocationDescriptor;
 import org.springframework.web.bind.annotation.RestController;

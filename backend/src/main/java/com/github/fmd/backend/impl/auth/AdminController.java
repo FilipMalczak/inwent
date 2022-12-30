@@ -1,7 +1,7 @@
 package com.github.fmd.backend.impl.auth;
 
-import com.github.fmd.backend.api.AdminAPI;
 import com.github.fmd.backend.api.model.AccessTokenResponse;
+import com.github.fmd.backend.api.security.AdminAPI;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 

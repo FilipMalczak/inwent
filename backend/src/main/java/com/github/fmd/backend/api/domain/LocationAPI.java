@@ -1,23 +1,20 @@
-package com.github.fmd.backend.api;
+package com.github.fmd.backend.api.domain;
 
 import com.github.fmd.backend.api.model.CreateLocationRequest;
 import com.github.fmd.backend.api.model.LocationDescriptor;
-import io.swagger.v3.oas.annotations.Hidden;
+import com.github.fmd.backend.api.security.annotations.AccessToken;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.links.Link;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import java.net.URL;
 
 @Tag(name = "Location and content management")
-@SecurityRequirement(name = "accessToken")
+@AccessToken
 @RequestMapping("/api/v${api.version}")
 public interface LocationAPI {
     @GetMapping("/location")

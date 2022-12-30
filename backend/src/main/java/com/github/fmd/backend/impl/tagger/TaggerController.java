@@ -1,6 +1,6 @@
 package com.github.fmd.backend.impl.tagger;
 
-import com.github.fmd.backend.api.TaggerAPI;
+import com.github.fmd.backend.api.domain.TaggerAPI;
 import com.github.fmd.backend.api.model.NameWrapper;
 import com.github.fmd.backend.api.model.TaggerDescriptor;
 import org.springframework.http.ResponseEntity;

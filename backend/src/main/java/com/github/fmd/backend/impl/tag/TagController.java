@@ -1,11 +1,10 @@
 package com.github.fmd.backend.impl.tag;
 
-import com.github.fmd.backend.api.TagAPI;
+import com.github.fmd.backend.api.domain.TagAPI;
 import com.github.fmd.backend.api.model.NamespaceDescriptor;
 import com.github.fmd.backend.api.model.TagAndNamespaceDescriptors;
 import com.github.fmd.backend.api.model.TagDescriptor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
