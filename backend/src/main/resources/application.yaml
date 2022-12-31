@@ -3,7 +3,7 @@ api:
 
 spring:
   application:
-    name: Glorious backend
+    name: inwent
   boot:
     admin:
       client:

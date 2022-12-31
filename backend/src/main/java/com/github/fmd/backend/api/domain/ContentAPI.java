@@ -2,6 +2,7 @@
 package com.github.fmd.backend.api.domain;
 
 import com.github.fmd.backend.api.model.ContentDescriptor;
+import com.github.fmd.backend.api.security.Stability;
 import com.github.fmd.backend.api.security.annotations.AccessToken;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -17,7 +18,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
-@Tag(name = "Content inspection and tagging")
+@Tag(name = "Content inspection and tagging", description = Stability.STABLE)
 @AccessToken
 @RequestMapping("/api/v${api.version}")
 public interface ContentAPI {
@@ -29,7 +30,7 @@ public interface ContentAPI {
     Mono<ContentDescriptor> getContentById(@RequestParam URI id);
 
     @PutMapping("/content/tag")
-    @Operation(responses = {
+    @Operation(description = Stability.EVOLVING, responses = {
         @ApiResponse(description = "OK", responseCode = "200"),
         @ApiResponse(description = "Bad request (when no tags are specified)", responseCode = "400", content = @Content())
     })
@@ -38,7 +39,7 @@ public interface ContentAPI {
         @RequestParam("content-id") URI contentId,
         @RequestParam(value = "tag-name", required = false) List<String> tagNames,
         @RequestParam(value = "tag-id", required = false) List<UUID> tagIds,
-        @RequestHeader(value = "X-Inwent-Tagger-Id") UUID taggerId
+        @RequestHeader(value = "X-Inwent-Origin-Id") UUID taggerId
         ){
         //this is an allowed case for default method in API interface -
         if (tagNames.size()+tagIds.size() == 0)

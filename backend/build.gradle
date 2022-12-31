@@ -33,6 +33,13 @@ dependencyManagement {
 	}
 }
 
+task copyMarkdowns(type: Copy) {
+	from "../docs"
+	into "build/resources/main/docs"
+}
+
+processResources.dependsOn copyMarkdowns
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 //	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'

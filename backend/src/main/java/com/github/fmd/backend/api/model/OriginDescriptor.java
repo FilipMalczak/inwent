@@ -2,7 +2,7 @@ package com.github.fmd.backend.api.model;
 
 import java.util.UUID;
 
-public record TaggerDescriptor(
+public record OriginDescriptor(
     UUID id,
     String name
 ) {

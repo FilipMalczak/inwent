@@ -1,7 +1,8 @@
 package com.github.fmd.backend.api.domain;
 
 import com.github.fmd.backend.api.model.NameWrapper;
-import com.github.fmd.backend.api.model.TaggerDescriptor;
+import com.github.fmd.backend.api.model.OriginDescriptor;
+import com.github.fmd.backend.api.security.Stability;
 import com.github.fmd.backend.api.security.annotations.AccessToken;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -14,28 +15,28 @@ import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
-@Tag(name = "Taggers management")
+@Tag(name = "Origin management", description = Stability.STABLE)
 @AccessToken
 @RequestMapping("/api/v${api.version}")
-public interface TaggerAPI {
-    @PostMapping("/tagger")
+public interface OriginAPI {
+    @PostMapping("/origin")
     @Operation(responses = {
         @ApiResponse(description = "OK", responseCode = "200"),
         @ApiResponse(description = "Created", responseCode = "201")
     })
-    Mono<ResponseEntity<TaggerDescriptor>> makeTagger(@Parameter(hidden = true) @RequestHeader("Host") String hostname, @RequestBody NameWrapper body);
+    Mono<ResponseEntity<OriginDescriptor>> makOrigin(@Parameter(hidden = true) @RequestHeader("Host") String hostname, @RequestBody NameWrapper body);
 
-    @GetMapping("/tagger/{id}")
+    @GetMapping("/origin/{id}")
     @Operation(responses = {
         @ApiResponse(description = "OK", responseCode = "200"),
         @ApiResponse(description = "Not found", responseCode = "404", content = @Content())
     })
-    Mono<TaggerDescriptor> getTaggerById(@PathVariable UUID id);
+    Mono<OriginDescriptor> getOriginById(@PathVariable UUID id);
 
-    @GetMapping("/tagger")
+    @GetMapping("/origin")
     @Operation(responses = {
         @ApiResponse(description = "OK", responseCode = "200"),
         @ApiResponse(description = "Not found", responseCode = "404", content = @Content())
     })
-    Mono<TaggerDescriptor> getTaggerByName(@RequestParam String name);
+    Mono<OriginDescriptor> getOriginByName(@RequestParam String name);
 }

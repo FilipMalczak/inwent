@@ -66,7 +66,11 @@ public interface ValidationAPI {
             </tr>
             <tr>
             <td colspan="5"><p>
-            For example, name <code>a.B .dE</code> will be first turned to <code>a.b .de</code>, then to <code>a.b..de</code> and finally to <code>a.b.de</code>. 
+            For example, path <code>a.B/.dE</code> will be first turned to <code>a.b/.de</code>, then to <code>a.b..de</code> and finally to <code>a.b.de</code>.
+            </p><p> 
+            Name <code>alfa-bETa - Gamma_--_HEY</code> will be lowercased, then turned to <code>alfa-beta---gamma----hey</code>, to finally end up as <code>alfa-beta-gamma-hey</code>.
+            </p><p>
+            Long story short, path <code>a-b c.d:/e   F</code> ends up as <code>a-b-c.d.e-f</code>.  
             </p></td> 
             </tr>
             <tr>
@@ -79,17 +83,17 @@ public interface ValidationAPI {
     interface Rgx {
 
         interface Name {
-            String CANONICAL = "[a-z-]+";
-            String ALLOWED = "[a-zA-Z-_ ]+";
             String SUGAR = "[_ ]";
             String RESOLVED = "-";
+            String CANONICAL = "[a-z0-9-]+";
+            String ALLOWED = "[a-zA-Z0-9-_ ]+";
         }
 
         interface Path {
-            String CANONICAL = Name.CANONICAL+"([.]"+ Name.CANONICAL+")*";
-            String ALLOWED = Name.ALLOWED+"([.:/]"+ Name.ALLOWED+")*";
             String SUGAR = "[:/]";
             String RESOLVED = ".";
+            String CANONICAL = Name.CANONICAL+"(["+RESOLVED+"]"+ Name.CANONICAL+")*";
+            String ALLOWED = Name.ALLOWED+"([["+RESOLVED+"]"+SUGAR+"]+"+Name.ALLOWED+")*";
         }
     }
 

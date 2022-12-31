@@ -23,5 +23,6 @@ See:
     if (when) you ever submit a bug to me
 - localhost:8080/swagger-ui.html
   - "html", not "htm"
-- localhost:8080/v3/api-docs
+  - localhost:8080/v3/api-docs
+
 

@@ -1,6 +1,7 @@
 package com.github.fmd.backend.impl.tag;
 
 import com.github.fmd.backend.api.domain.TagAPI;
+import com.github.fmd.backend.api.domain.TagTreeAPI;
 import com.github.fmd.backend.api.model.NamespaceDescriptor;
 import com.github.fmd.backend.api.model.TagAndNamespaceDescriptors;
 import com.github.fmd.backend.api.model.TagDescriptor;
@@ -12,14 +13,29 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 
 @RestController
-public class TagController implements TagAPI {
+public class TagTreeController implements TagTreeAPI {
     @Override
-    public Mono<TagDescriptor> getTagById(UUID id) {
+    public Mono<Void> bindParent(UUID childId, UUID parentId) {
         return null;
     }
 
     @Override
-    public Mono<TagAndNamespaceDescriptors> getTagWithDetailsById(UUID id) {
+    public Mono<Void> bindOrRebindParent(UUID childId, UUID parentId) {
+        return null;
+    }
+
+    @Override
+    public Mono<ResponseEntity<Void>> unbindParent(UUID childId) {
+        return null;
+    }
+
+    @Override
+    public Flux<UUID> getTagChildren(UUID parentId) {
+        return null;
+    }
+
+    @Override
+    public Flux<TagDescriptor> getTagChildrenDescriptions(UUID parentId) {
         return null;
     }
 }

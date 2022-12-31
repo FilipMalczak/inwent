@@ -2,6 +2,7 @@ package com.github.fmd.backend.api.domain;
 
 import com.github.fmd.backend.api.model.CreateLocationRequest;
 import com.github.fmd.backend.api.model.LocationDescriptor;
+import com.github.fmd.backend.api.security.Stability;
 import com.github.fmd.backend.api.security.annotations.AccessToken;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -13,7 +14,7 @@ import reactor.core.publisher.Mono;
 
 import java.net.URL;
 
-@Tag(name = "Location and content management")
+@Tag(name = "Location and content management", description = Stability.STABLE)
 @AccessToken
 @RequestMapping("/api/v${api.version}")
 public interface LocationAPI {

@@ -3,6 +3,8 @@ package com.github.fmd.backend.api.security;
 import com.github.fmd.backend.api.model.AccessTokenResponse;
 import com.github.fmd.backend.api.security.annotations.AdminSecret;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.extensions.Extension;
+import io.swagger.v3.oas.annotations.extensions.ExtensionProperty;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import reactor.core.publisher.Mono;
 
-@Tag(name = "Access token management")
+@Tag(name = "Access token management", description = Stability.STABLE)
 @AdminSecret
 @RequestMapping("/api/v${api.version}")
 public interface AdminAPI {
