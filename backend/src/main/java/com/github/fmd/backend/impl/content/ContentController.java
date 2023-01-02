@@ -1,7 +1,7 @@
 package com.github.fmd.backend.impl.content;
 
 import com.github.fmd.backend.api.domain.ContentAPI;
-import com.github.fmd.backend.api.model.ContentDescriptor;
+import com.github.fmd.backend.api.model.domain.content.ContentDescriptor;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 

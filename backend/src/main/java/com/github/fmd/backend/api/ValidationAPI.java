@@ -1,7 +1,7 @@
 package com.github.fmd.backend.api;
 
-import com.github.fmd.backend.api.model.LintResponse;
-import com.github.fmd.backend.api.model.LintSubjectType;
+import com.github.fmd.backend.api.model.lint.LintResponse;
+import com.github.fmd.backend.api.model.lint.LintSubjectType;
 import com.github.fmd.backend.api.security.annotations.Anonymous;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;

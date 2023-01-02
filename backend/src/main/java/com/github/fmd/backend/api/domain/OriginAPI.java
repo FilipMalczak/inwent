@@ -1,7 +1,7 @@
 package com.github.fmd.backend.api.domain;
 
-import com.github.fmd.backend.api.model.NameWrapper;
-import com.github.fmd.backend.api.model.OriginDescriptor;
+import com.github.fmd.backend.api.model.domain.origin.NameWrapper;
+import com.github.fmd.backend.api.model.domain.origin.OriginDescriptor;
 import com.github.fmd.backend.api.security.Stability;
 import com.github.fmd.backend.api.security.annotations.AccessToken;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,7 +1,7 @@
 package com.github.fmd.backend.api.domain;
 
-import com.github.fmd.backend.api.model.CreateLocationRequest;
-import com.github.fmd.backend.api.model.LocationDescriptor;
+import com.github.fmd.backend.api.model.domain.location.CreateLocationRequest;
+import com.github.fmd.backend.api.model.domain.location.LocationDescriptor;
 import com.github.fmd.backend.api.security.Stability;
 import com.github.fmd.backend.api.security.annotations.AccessToken;
 import io.swagger.v3.oas.annotations.Operation;

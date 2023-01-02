@@ -1,7 +1,7 @@
 package com.github.fmd.backend.api.domain;
 
-import com.github.fmd.backend.api.model.NamespaceDescriptor;
-import com.github.fmd.backend.api.model.TagDescriptor;
+import com.github.fmd.backend.api.model.domain.tag.NamespaceDescriptor;
+import com.github.fmd.backend.api.model.domain.tag.TagDescriptor;
 import com.github.fmd.backend.api.security.Stability;
 import com.github.fmd.backend.api.security.annotations.AccessToken;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,18 +1,16 @@
 package com.github.fmd.backend.api.domain;
 
-import com.github.fmd.backend.api.model.NamespaceDescriptor;
-import com.github.fmd.backend.api.model.TagAndNamespaceDescriptors;
-import com.github.fmd.backend.api.model.TagDescriptor;
+import com.github.fmd.backend.api.model.domain.tag.TagAndNamespaceDescriptors;
+import com.github.fmd.backend.api.model.domain.tag.TagDescriptor;
 import com.github.fmd.backend.api.security.Stability;
 import com.github.fmd.backend.api.security.annotations.AccessToken;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;

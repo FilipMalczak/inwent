@@ -1,8 +1,8 @@
 package com.github.fmd.backend.impl.location;
 
 import com.github.fmd.backend.api.domain.LocationAPI;
-import com.github.fmd.backend.api.model.CreateLocationRequest;
-import com.github.fmd.backend.api.model.LocationDescriptor;
+import com.github.fmd.backend.api.model.domain.location.CreateLocationRequest;
+import com.github.fmd.backend.api.model.domain.location.LocationDescriptor;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
