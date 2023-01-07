@@ -20,9 +20,9 @@ function build_image() {
 }
 
 #build_image admin
-build_image backend
+build_image inwent-service
 cd ./admin
 echo "ADMIN_IMAGE=docker.io/library/admin:$(./gradlew -q printVersion)" > ../.env
-cd ../backend
-echo "BACKEND_IMAGE=docker.io/library/backend:$(./gradlew -q printVersion)" >> ../.env
+cd ../inwent-service
+echo "BACKEND_IMAGE=docker.io/library/inwent-service:$(./gradlew -q printVersion)" >> ../.env
 cd ..

@@ -1,7 +1,12 @@
-# Backend
+# inwent
 
-I'm too tired right now.
-The project is dirty like fishermans balls after a months trip to the sea. I'll clean it up later.
+> INdexer for Web contENT
+
+Elastic is for searching documents. Google is for searching unstructuredd web. This is for describing and searching web content, as found under URLs and identified with URIs. Think: images, videos, audio, etc; think: reddit, 4chan, tumblr, etc.
+
+## Quickstart
+
+> Not much to show, but the OpenAPI is in pretty good shape and the implementation will use it as reference.
 
 For now:
 
