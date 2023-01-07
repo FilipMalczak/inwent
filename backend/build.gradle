@@ -11,7 +11,9 @@ java {
 
 group = 'com.github.fmd'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = "17.PREVIEW"
+targetCompatibility = "17.PREVIEW"
+//targetCompatibility = JavaVersion.VERSION_17_PREVIEW
 
 configurations {
 	compileOnly {
@@ -68,16 +70,27 @@ dependencies {
 	testImplementation 'io.projectreactor:reactor-test'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
-
 task printVersion() {
 	doLast { print version }
 }
 
-tasks.withType(Jar) {
+tasks.withType(JavaCompile).all {
+	options.compilerArgs += ['--enable-preview']
+}
+
+tasks.withType(Test).all {
+	useJUnitPlatform()
+	jvmArgs += '--enable-preview'
+}
+
+tasks.withType(Jar).all {
 	manifest {
 		attributes('Automatic-Module-Name': project.group)
 	}
 }
+
+tasks.withType(JavaExec).all {
+	jvmArgs += '--enable-preview'
+}
+
+
