@@ -19,7 +19,7 @@ function build_image() {
   fi
 }
 
-build_image admin
+#build_image admin
 build_image backend
 cd ./admin
 echo "ADMIN_IMAGE=docker.io/library/admin:$(./gradlew -q printVersion)" > ../.env

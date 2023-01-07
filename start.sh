@@ -1,4 +1,6 @@
 #!/usr/bin/bash
+set -ex
+
 source ./common.sh
 
 $COMPOSE up -d
