@@ -7,5 +7,5 @@ $COMPOSE up -d
 
 if [[ ! -z "$1" ]]
 then
-    $COMPOSE logs -f inwent-service
+    $COMPOSE logs -f $1
 fi

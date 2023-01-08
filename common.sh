@@ -15,7 +15,8 @@ which_exit_code () {
   return $RESULT
 }
 
-SIMPLE=$1
+#SIMPLE=$1
+SIMPLE=""
 
 if [[ -z "$SIMPLE" ]]
 then
@@ -46,11 +47,12 @@ else
   echo "Docker variant given explicitly"
 fi
 
-COMPOSE=$2
+#COMPOSE=$2
+COMPOSE=""
 if [[ -z "$COMPOSE" ]]
 then
   echo "Trying to figure out Docker Compose variant"
-  if [[ "$SIMPLE" -eq "docker" ]]
+  if [[ "$SIMPLE" = "docker" ]]
   then
     if [ $(which_exit_code "docker-compose") -gt 0 ]
     then

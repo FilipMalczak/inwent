@@ -8,6 +8,11 @@ spring:
     admin:
       client:
         url: ${ADMIN_URL:http://localhost:8090}
+  r2dbc:
+    url: r2dbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/inwent
+    username: ${POSTGRES_USER:inwent}
+    password: ${POSTGRES_PASS:inwent-pass}
+    initialization-mode: always
 
 springdoc:
   swagger-ui:
