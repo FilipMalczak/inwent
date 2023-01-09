@@ -19,10 +19,22 @@ function build_image() {
   fi
 }
 
-#build_image admin
-build_image inwent-service
 cd ./admin
-echo "ADMIN_IMAGE=docker.io/library/admin:$(./gradlew -q printVersion)" > ../.env
-cd ../inwent-service
+ADMIN_IMAGE="docker.io/library/admin:$(./gradlew -q printVersion)"
+cd ..
+echo "Admin image: $ADMIN_IMAGE"
+$SIMPLE inspect $ADMIN_IMAGE > /dev/null 2> /dev/null
+# if "inspect" failed
+if [ $? -gt 0 ]
+then
+  echo "Rebuilding Admin"
+  build_image admin
+else
+  echo "Admin up to date"
+fi
+build_image inwent-service
+pwd
+echo "ADMIN_IMAGE=$ADMIN_IMAGE" > ./.env
+cd ./inwent-service
 echo "BACKEND_IMAGE=docker.io/library/inwent-service:$(./gradlew -q printVersion)" >> ../.env
 cd ..

@@ -1,4 +1,4 @@
-package com.github.filipmalczak.inwent.impl;
+package com.github.filipmalczak.inwent.impl.config;
 
 import io.r2dbc.spi.ConnectionFactory;
 import lombok.extern.slf4j.Slf4j;

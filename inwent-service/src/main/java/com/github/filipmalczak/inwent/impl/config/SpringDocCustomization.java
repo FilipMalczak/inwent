@@ -1,4 +1,4 @@
-package com.github.filipmalczak.inwent.impl;
+package com.github.filipmalczak.inwent.impl.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

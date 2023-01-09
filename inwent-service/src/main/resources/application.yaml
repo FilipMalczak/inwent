@@ -12,7 +12,7 @@ spring:
     url: r2dbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/inwent
     username: ${POSTGRES_USER:inwent}
     password: ${POSTGRES_PASS:inwent-pass}
-    initialization-mode: always
+#    initialization-mode: always
 
 springdoc:
   swagger-ui:
@@ -33,5 +33,9 @@ management:
 #debug=true
 
 logging:
+  level:
+    io.r2dbc.postgresql.QUERY: DEBUG # for queries
+    io.r2dbc.postgresql.PARAM: DEBUG # for parameters
+    helper: DEBUG
   file:
     name: ${LOGFILE_NAME:./${spring.application.name}_log.txt}

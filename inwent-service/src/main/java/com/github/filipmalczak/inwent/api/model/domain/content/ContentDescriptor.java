@@ -8,7 +8,6 @@ import java.util.List;
 public record ContentDescriptor(
     URI uri,
     String title,
-    String type,
-    List<TagHits> tags //todo this should come from hit query, remove
+    String type
 ) {
 }

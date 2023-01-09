@@ -7,6 +7,7 @@ import java.net.URL;
 
 public record CreateLocationRequest(
     URL id,
+    String type,
     URI contentId,
     ContentBody content
 ) {

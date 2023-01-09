@@ -2,7 +2,7 @@
 #
 # INCLUDE VIA source INSTEAD
 
-set -ex
+#set -ex
 
 # this is hack for my machine; shouldn't matter on yours ~Filip
 newgrp docker &

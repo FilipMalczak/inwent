@@ -9,7 +9,7 @@ java {
 	modularity.inferModulePath = true
 }
 
-group = 'com.github.fmd'
+group = 'com.github.filipmalczak'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = "17.PREVIEW"
 targetCompatibility = "17.PREVIEW"

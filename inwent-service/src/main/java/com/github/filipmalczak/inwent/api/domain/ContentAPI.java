@@ -29,31 +29,6 @@ public interface ContentAPI {
     })
     Mono<ContentDescriptor> getContentById(@RequestParam URI id);
 
-    @PutMapping("/content/tag")
-    @Operation(description = Stability.EVOLVING, responses = {
-        @ApiResponse(description = "OK", responseCode = "200"),
-        @ApiResponse(description = "Bad request (when no tags are specified)", responseCode = "400", content = @Content())
-    })
-    @SneakyThrows
-    default Mono<ContentDescriptor> putTagsOnContent(
-        @RequestParam("content-id") URI contentId,
-        @RequestParam(value = "tag-name", required = false) List<String> tagNames,
-        @RequestParam(value = "tag-id", required = false) List<UUID> tagIds,
-        @RequestHeader(value = "X-Inwent-Origin-Id") UUID taggerId
-        ){
-        //this is an allowed case for default method in API interface -
-        if (tagNames.size()+tagIds.size() == 0)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //DO NOT add any details; let consumers learn to read the docs
-        return putTags(
-            contentId,
-            tagNames,
-            tagIds
-        );
-    }
-
-    //todo delete tag; rephrase to "add/remove hit"
-
-    Mono<ContentDescriptor> putTags(URI uri, List<String> tagNames, List<UUID> tagIds);
 
 
 }

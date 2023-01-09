@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
@@ -31,7 +32,7 @@ public interface LocationAPI {
         @ApiResponse(description = "Bad request (both content and contentId were provided)", responseCode = "400", content =@Content()),
         @ApiResponse(description = "Conflict (this location already exists)", responseCode = "409", content =@Content())
     })
-    Mono<LocationDescriptor> createLocation(@Parameter(hidden = true) @RequestHeader("Host") String host, @RequestBody CreateLocationRequest body);
+    Mono<ResponseEntity<LocationDescriptor>> createLocation(@Parameter(hidden = true) @RequestHeader("Host") String host, @RequestBody CreateLocationRequest body);
 
 
     @PostMapping("/location")
@@ -40,6 +41,6 @@ public interface LocationAPI {
         @ApiResponse(description = "Created", responseCode = "201"),
         @ApiResponse(description = "Bad request (both content and contentId were provided)", responseCode = "400", content =@Content()),
     })
-    Mono<LocationDescriptor> makeLocation(@Parameter(hidden = true) @RequestHeader("Host") String host, @RequestBody CreateLocationRequest body);
+    Mono<ResponseEntity<LocationDescriptor>> makeLocation(@Parameter(hidden = true) @RequestHeader("Host") String host, @RequestBody CreateLocationRequest body);
 
 }

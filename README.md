@@ -28,6 +28,11 @@ See:
     if (when) you ever submit a bug to me
 - localhost:8080/swagger-ui.html
   - "html", not "htm"
-  - localhost:8080/v3/api-docs
+- localhost:8080/v3/api-docs
+- localhost:8091
+  - this is pgAdmin4 instance
+  - admin@inwe.nt / pass
+  - use hostname=inwent-postgres, port=5432, user=inwent, pass=inwent-pass
+  - localhost:5432 is exposing postgres to your machine if you wanna run code in IDE or smth
 
 
