@@ -25,6 +25,10 @@ public class Issues {
         return Mono.error(new MissingException("location", "locations", id.toString()));
     }
 
+    public <T> Mono<T> missingOrigin(String searchTerm, String searchValue){
+        return Mono.error(new MissingException("origin."+searchTerm, "origins."+searchTerm, searchValue));
+    }
+
     public <T> Mono<T> locationConflict(URL url){
         return Mono.error(new AlreadyExistsException("location", url.toString()));
     }

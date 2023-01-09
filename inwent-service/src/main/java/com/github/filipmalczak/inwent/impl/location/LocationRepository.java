@@ -4,7 +4,7 @@ import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Mono;
 
-public interface LocationRepository extends ReactiveCrudRepository<LocationData, Long> {
+public interface LocationRepository extends R2dbcRepository<LocationData, Long> {
     Mono<Boolean> existsByUrl(String url);
     Mono<LocationData> findByUrl(String url);
 }
