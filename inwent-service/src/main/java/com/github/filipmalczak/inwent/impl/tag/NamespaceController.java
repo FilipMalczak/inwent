@@ -16,6 +16,8 @@ import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
+
+//todo start validating and canonicalizing names and paths
 @RestController
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class NamespaceController implements NamespaceAPI {
