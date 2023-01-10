@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -25,6 +26,7 @@ public interface TagTreeAPI {
         @ApiResponse(description = "Not found", responseCode = "404", content = @Content()),
         @ApiResponse(description = "Conflict (parent was already set)", responseCode = "409", content = @Content())
     })
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     Mono<Void> bindParent(@PathVariable UUID childId, @PathVariable UUID parentId);
 
     @PostMapping("/tag/{childId}/parent/{parentId}")
@@ -33,6 +35,7 @@ public interface TagTreeAPI {
         @ApiResponse(description = "Bad request (tags belong to different namespaces)", responseCode = "400", content = @Content()),
         @ApiResponse(description = "Not found", responseCode = "404", content = @Content()),
     })
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     Mono<Void> bindOrRebindParent(@PathVariable UUID childId, @PathVariable UUID parentId);
 
     @DeleteMapping("/tag/{childId}/parent")
@@ -41,7 +44,8 @@ public interface TagTreeAPI {
         @ApiResponse(description = "Bad request (child has no parent to unbind)", responseCode = "400", content = @Content()),
         @ApiResponse(description = "Not found", responseCode = "404", content = @Content())
     })
-    Mono<ResponseEntity<Void>> unbindParent(@PathVariable UUID childId);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    Mono<Void> unbindParent(@PathVariable UUID childId);
 
     @GetMapping("/tag/{parentId}/children")
     @Operation(responses = {
@@ -56,4 +60,20 @@ public interface TagTreeAPI {
         @ApiResponse(description = "Not found", responseCode = "404", content = @Content())
     })
     Flux<TagDescriptor> getTagChildrenDescriptions(@PathVariable UUID parentId);
+
+    @GetMapping("/tag/-/children")
+    @Operation(responses = {
+        @ApiResponse(description = "OK", responseCode = "200")
+    })
+    default Flux<UUID> getNoTagChildren() {
+        return getTagChildren(null);
+    }
+
+    @GetMapping("/tag/-/children/description")
+    @Operation(responses = {
+        @ApiResponse(description = "OK", responseCode = "200")
+    })
+    default Flux<TagDescriptor> getNoTagChildrenDescriptions(){
+        return getTagChildrenDescriptions(null);
+    }
 }

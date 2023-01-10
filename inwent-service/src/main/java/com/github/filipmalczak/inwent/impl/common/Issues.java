@@ -38,8 +38,16 @@ public class Issues {
         return Mono.error(new MissingException("tag", "namespace_slash_name", asList(idOrPath+"/"+tagName)));
     }
 
+    public <T> Mono<T> missingTag(UUID id) {
+        return Mono.error(new MissingException("tag", "id", asList(id.toString())));
+    }
+
     public <T> Mono<T> locationConflict(URL url){
         return Mono.error(new AlreadyExistsException("location", "id", url.toString()));
+    }
+
+    public <T> Mono<T> parentAlreadyBound(UUID childId){
+        return Mono.error(new AlreadyExistsException("child_tag", "id", childId.toString()));
     }
 
     public <T> Mono<T> badRequest() {

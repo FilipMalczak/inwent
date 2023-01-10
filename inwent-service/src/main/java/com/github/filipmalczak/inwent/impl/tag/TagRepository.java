@@ -12,4 +12,7 @@ public interface TagRepository extends R2dbcRepository<TagData, UUID> {
     Mono<TagData> findByNamespaceIdAndName(UUID namespaceId, String name);
 
     Flux<TagData> findAllByNamespaceId(UUID namespaceId);
+
+    Flux<UUID> findAllIdsByParentId(UUID parentId);
+    Flux<TagData> findAllByParentId(UUID parentId);
 }

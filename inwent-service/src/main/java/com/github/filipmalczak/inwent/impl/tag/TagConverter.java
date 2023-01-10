@@ -31,7 +31,7 @@ public class TagConverter {
 
     public Mono<TagAndNamespaceDescriptors> convertWitDetails(TagData data){
         return namespaceRepository
-            .findById(data.id())
+            .findById(data.namespaceId())
             .flatMap(namespaceConverter::convert)
             .map( nmsp ->
                 new TagAndNamespaceDescriptors(
