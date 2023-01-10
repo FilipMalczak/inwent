@@ -1,36 +1,35 @@
 package com.github.filipmalczak.inwent.impl.common;
 
-import com.github.filipmalczak.inwent.api.model.domain.location.LocationDescriptor;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.experimental.FieldDefaults;
+import com.github.filipmalczak.inwent.impl.common.exceptions.AlreadyExistsException;
+import com.github.filipmalczak.inwent.impl.common.exceptions.MissingException;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
 import java.net.URL;
 
+import static java.util.Arrays.asList;
+
 @Component
 public class Issues {
 
     //todo add handlers
     public <T> Mono<T> missingContent(URI id){
-        return Mono.error(new MissingException("content", "content", id.toString()));
+        return Mono.error(new MissingException("content", "id", asList(id.toString())));
     }
 
     public <T> Mono<T> missingLocation(URL id){
-        return Mono.error(new MissingException("location", "locations", id.toString()));
+        return Mono.error(new MissingException("location", "id", asList(id.toString())));
     }
 
     public <T> Mono<T> missingOrigin(String searchTerm, String searchValue){
-        return Mono.error(new MissingException("origin."+searchTerm, "origins."+searchTerm, searchValue));
+        return Mono.error(new MissingException("origin", searchTerm, asList(searchValue)));
     }
 
     public <T> Mono<T> locationConflict(URL url){
-        return Mono.error(new AlreadyExistsException("location", url.toString()));
+        return Mono.error(new AlreadyExistsException("location", "id", url.toString()));
     }
 
     public <T> Mono<T> badRequest() {

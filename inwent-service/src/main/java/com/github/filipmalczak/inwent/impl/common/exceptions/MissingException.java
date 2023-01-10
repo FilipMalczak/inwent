@@ -1,4 +1,4 @@
-package com.github.filipmalczak.inwent.impl.common;
+package com.github.filipmalczak.inwent.impl.common.exceptions;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -14,18 +14,14 @@ import static java.util.Arrays.asList;
 @Getter
 public class MissingException extends RuntimeException {
     String entity;
-    String entities;
-    List<String> ids;
+    String searchTerm;
+    List<String> searchValues;
 
-    public MissingException(String entity, String entities, String id, String... ids) {
-        super(
-            ids.length > 0 ?
-                capitalize(entities) + " with following IDs are missing: "+l(id, ids) :
-                capitalize(entity)+" with following ID is missing: "+id
-        );
+    public MissingException(String entity, String searchTerm, List<String> searchValues) {
+        super(capitalize(entity)+"Data with following "+searchTerm+"s is missing: "+searchValues);
         this.entity = entity;
-        this.entities = entities;
-        this.ids = l(id, ids);
+        this.searchTerm = searchTerm;
+        this.searchValues = searchValues;
     }
 
     private static List<String> l(String id, String... ids){
