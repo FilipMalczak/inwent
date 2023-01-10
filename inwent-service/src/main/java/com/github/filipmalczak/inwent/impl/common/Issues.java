@@ -1,5 +1,6 @@
 package com.github.filipmalczak.inwent.impl.common;
 
+import com.github.filipmalczak.inwent.api.model.domain.tag.NamespaceDescriptor;
 import com.github.filipmalczak.inwent.impl.common.exceptions.AlreadyExistsException;
 import com.github.filipmalczak.inwent.impl.common.exceptions.MissingException;
 import org.springframework.http.HttpStatusCode;
@@ -26,6 +27,10 @@ public class Issues {
 
     public <T> Mono<T> missingOrigin(String searchTerm, String searchValue){
         return Mono.error(new MissingException("origin", searchTerm, asList(searchValue)));
+    }
+
+    public <T> Mono<T> missingNamespace(String idOrPath) {
+        return Mono.error(new MissingException("namespace", "id_or_path", asList(idOrPath)));
     }
 
     public <T> Mono<T> locationConflict(URL url){

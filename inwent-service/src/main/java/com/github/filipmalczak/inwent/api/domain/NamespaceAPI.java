@@ -34,13 +34,13 @@ public interface NamespaceAPI {
     })
     Mono<ResponseEntity<NamespaceDescriptor>> makeNamespace(@Parameter(hidden = true) @RequestHeader("Host") String hostname, @PathVariable String path);
 
-    @GetMapping("/namespace/{pathOrId}")
+    @GetMapping("/namespace/{idOrPath}")
     @Operation(responses = {
         @ApiResponse(description = "OK", responseCode = "200"),
         @ApiResponse(description = "Bad request (path format error)", responseCode = "400", content = @Content()),
         @ApiResponse(description = "Not found", responseCode = "404", content = @Content())
     })
-    Mono<NamespaceDescriptor> getNamespace(@PathVariable String pathOrId);
+    Mono<NamespaceDescriptor> getNamespace(@PathVariable String idOrPath);
 
 
     ////////////////////////////////////
@@ -50,27 +50,27 @@ public interface NamespaceAPI {
     //
     ////////////////////////////////////
 
-    @PostMapping("/namespace/{namespaceId}/tag/{tagName}")
+    @PostMapping("/namespace/{idOrPath}/tag/{tagName}")
     @Operation(responses = {
         @ApiResponse(description = "OK", responseCode = "200"),
         @ApiResponse(description = "Created", responseCode = "201"),
         @ApiResponse(description = "Bad request (tag name format error)", responseCode = "400", content = @Content())
     })
     Mono<ResponseEntity<TagDescriptor>> makeTagByName(@Parameter(hidden = true) @RequestHeader("Host") String hostname,
-                                                      @PathVariable String namespaceId, @PathVariable String tagName);
+                                                      @PathVariable String idOrPath, @PathVariable String tagName);
 
-    @GetMapping("/namespace/{id}/tag")
+    @GetMapping("/namespace/{idOrPath}/tag")
     @Operation(responses = {
         @ApiResponse(description = "OK", responseCode = "200"),
         @ApiResponse(description = "Not found", responseCode = "404", content = @Content())
     })
-    Flux<TagDescriptor> getTagsByNamespace(@PathVariable String id);
+    Flux<TagDescriptor> getTagsByNamespace(@PathVariable String idOrPath);
 
-    @GetMapping("/namespace/{namespaceId}/tag/{tagName}")
+    @GetMapping("/namespace/{idOrPath}/tag/{tagName}")
     @Operation(responses = {
         @ApiResponse(description = "OK", responseCode = "200"),
         @ApiResponse(description = "Bad request (tag name format error)", responseCode = "400", content = @Content()),
         @ApiResponse(description = "Not found", responseCode = "404", content = @Content())
     })
-    Mono<TagDescriptor> getTagByName(@PathVariable String namespaceId, @PathVariable String tagName);
+    Mono<TagDescriptor> getTagByName(@PathVariable String idOrPath, @PathVariable String tagName);
 }

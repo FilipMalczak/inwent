@@ -34,8 +34,8 @@ management:
 
 logging:
   level:
-    io.r2dbc.postgresql.QUERY: DEBUG # for queries
-    io.r2dbc.postgresql.PARAM: DEBUG # for parameters
+#    io.r2dbc.postgresql.QUERY: DEBUG # for queries
+#    io.r2dbc.postgresql.PARAM: DEBUG # for parameters
     helper: DEBUG
   file:
     name: ${LOGFILE_NAME:./${spring.application.name}_log.txt}

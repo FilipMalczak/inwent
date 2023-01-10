@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.server.ServerWebExchange;
 
+import static com.github.filipmalczak.inwent.impl.common.Misc.capitalize;
+
 @ControllerAdvice
 public class Handlers {
     //spec says that multiple headers are allowed as long as semantics are the same as if there were single
@@ -17,7 +19,7 @@ public class Handlers {
     @ExceptionHandler(MissingException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void handle(MissingException exception, ServerWebExchange exchange){
-        String headerName = "X-Inwent-"+exception.getEntity()+"-Not-Found-"+exception.getSearchTerm()+"s";
+        String headerName = "X-Inwent-"+capitalize(exception.getEntity())+"-Not-Found-"+capitalize(exception.getSearchTerm())+"s";
         var headers = exchange.getResponse().getHeaders();
         for (var val: exception.getSearchValues()) {
             headers.add(headerName, val);
@@ -27,7 +29,7 @@ public class Handlers {
     @ExceptionHandler(AlreadyExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public void handle(AlreadyExistsException exception, ServerWebExchange exchange){
-        String headerName = "X-Inwent-"+exception.getEntity()+"-Already-Exists-"+exception.getSearchTerm();
+        String headerName = "X-Inwent-"+capitalize(exception.getEntity())+"-Already-Exists-"+capitalize(exception.getSearchTerm());
         var headers = exchange.getResponse().getHeaders();
         headers.add(headerName, exception.getSearchValue());
     }
