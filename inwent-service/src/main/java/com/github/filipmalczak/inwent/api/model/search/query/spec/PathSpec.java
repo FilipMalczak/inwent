@@ -12,6 +12,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
     }
 )
 public sealed interface PathSpec
-    extends NamespaceSelector, TagSelector
+    extends NamespaceSelector//, TagSelector //todo reenable
     permits AllSpecs.AllPathSpec, AnySpec.AnyPathSpec, NotSpec.NotPathSpec, PathLiteral, PathPredicate {
 }

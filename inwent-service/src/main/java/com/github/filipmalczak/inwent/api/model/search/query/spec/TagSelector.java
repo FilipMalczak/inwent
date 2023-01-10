@@ -10,11 +10,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
         IdLiteral.class,
         NameSpec.class,
         NamespaceSpec.class,
-        ParentSpec.class,
-        PathSpec.class
+        ParentSpec.class//,
+        //PathSpec.class//todo reenable
     }
 )
 public sealed interface TagSelector
     extends ParentSelector
-    permits AllSelectors.AllTagSelector, AnySelector.AnyTagSelector, NotSelector.NotTagSelector, IdLiteral, NameSpec, NamespaceSpec, ParentSpec, PathSpec {
+    permits AllSelectors.AllTagSelector, AnySelector.AnyTagSelector, NotSelector.NotTagSelector, IdLiteral, NameSpec, NamespaceSpec, ParentSpec/* fixme ditto , PathSpec */ {
 }

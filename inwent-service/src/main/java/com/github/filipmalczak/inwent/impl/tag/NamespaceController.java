@@ -134,11 +134,25 @@ public class NamespaceController implements NamespaceAPI {
 
     @Override
     public Flux<TagDescriptor> getTagsByNamespace(String idOrPath) {
-        return null;
+        return namespace(idOrPath)
+            .flatMapMany( nmsp ->
+                tagRepository.findAllByNamespaceId(nmsp.id())
+            )
+            .flatMap(tagConverter::convert);
+    }
+
+    private Mono<TagData> tag(String idOrPath, String tagName){
+        return namespace(idOrPath)
+            .switchIfEmpty(issues.missingNamespace(idOrPath))
+            .flatMap( nmsp ->
+                tagRepository.findByNamespaceIdAndName(nmsp.id(), tagName)
+            );
     }
 
     @Override
     public Mono<TagDescriptor> getTagByName(String idOrPath, String tagName) {
-        return null;
+        return tag(idOrPath, tagName)
+            .flatMap(tagConverter::convert)
+            .switchIfEmpty(issues.missingTag(idOrPath, tagName));
     }
 }

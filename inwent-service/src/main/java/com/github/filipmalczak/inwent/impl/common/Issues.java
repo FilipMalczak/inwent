@@ -10,6 +10,7 @@ import reactor.core.publisher.Mono;
 
 import java.net.URI;
 import java.net.URL;
+import java.util.UUID;
 
 import static java.util.Arrays.asList;
 
@@ -31,6 +32,10 @@ public class Issues {
 
     public <T> Mono<T> missingNamespace(String idOrPath) {
         return Mono.error(new MissingException("namespace", "id_or_path", asList(idOrPath)));
+    }
+
+    public <T> Mono<T> missingTag(String idOrPath, String tagName) {
+        return Mono.error(new MissingException("tag", "namespace_slash_name", asList(idOrPath+"/"+tagName)));
     }
 
     public <T> Mono<T> locationConflict(URL url){
