@@ -1,9 +1,7 @@
 package com.github.filipmalczak.inwent.impl.common;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toSet;

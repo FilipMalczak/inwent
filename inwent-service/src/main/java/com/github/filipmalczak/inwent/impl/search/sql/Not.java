@@ -1,10 +1,28 @@
 package com.github.filipmalczak.inwent.impl.search.sql;
 
-import static java.util.stream.Collectors.joining;
+import java.util.ArrayList;
+import java.util.List;
 
-record Not(Condition child) implements Condition {
+import static java.util.Arrays.asList;
+import static org.valid4j.Assertive.require;
+
+public record Not(List<Condition> children) implements Scope {
+
     @Override
     public String toSql() {
-        return "NOT ("+child.toSql()+")";
+        //todo dedicated
+        require(children.size() == 1);
+        return "NOT ("+children.get(0).toSql()+")";
+    }
+
+    @Override
+    public List<Condition> content() {
+        return children;
+    }
+
+    @Override
+    public void add(Condition c) {
+        require(children.isEmpty());
+        children.add(c);
     }
 }

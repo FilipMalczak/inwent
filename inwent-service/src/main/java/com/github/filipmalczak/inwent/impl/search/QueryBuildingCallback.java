@@ -6,7 +6,7 @@ import com.github.filipmalczak.inwent.impl.common.visitor.Callback;
 import com.github.filipmalczak.inwent.impl.search.context.TranscriptionContext;
 import com.github.filipmalczak.inwent.impl.search.context.node.*;
 import com.github.filipmalczak.inwent.impl.search.context.node.selector.Selectors;
-import com.github.filipmalczak.inwent.impl.search.sql.Condition;
+import com.github.filipmalczak.inwent.impl.search.sql.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.function.BiConsumer;
 
 import static java.util.Arrays.asList;
-import static org.valid4j.Assertive.require;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor
@@ -68,46 +67,73 @@ public class QueryBuildingCallback implements Callback {
         new ActionDefinition<>(URLLiteral.class, (s, u) -> s.url(u.url().toString()))
     );
 
+    static Class<? extends Scope> scopeFor(ScopeSpec spec){
+        if (spec instanceof AllSpec)
+            return All.class;
+        if (spec instanceof AnySpec)
+            return Any.class;
+        if (spec instanceof NotSpec)
+            return Not.class;
+        throw new IllegalStateException(); //todo
+
+    }
+
     TranscriptionContext context;
 
     @Override
     public Object beforeChild(Object owner, String field, Record value) {
-        log.debug("Before "+owner+" :: "+field+" -> "+value);
-        boolean isTransition = false;
-        boolean isAction = false;
-        for (var transDef: TRANSITIONS){
-            if (transDef.queried().isInstance(owner)){
-                context.enter(transDef.transisitonedTo());
-                isTransition = true;
-                break;
-            }
-        }
-        if (!isTransition) {
-            for (var actionDef: ACTIONS){
-                if (actionDef.queried().isInstance(owner)) {
-                    actionDef.action()
-                        .accept(
-                            context.selectors(),
-                            owner
-                        );
-                    isAction = true;
+        log.debug("Before "+"["+field+"] "+value+" @"+owner);
+        if (value instanceof ScopeSpec) {
+            var s = scopeFor((ScopeSpec) value);
+            log.debug("Opening scope "+s);
+            context.open(s);
+        } else {
+            boolean isTransition = false;
+            boolean isAction = false;
+            for (var transDef : TRANSITIONS) {
+                if (transDef.queried().isInstance(value)) {
+                    log.debug("Entering "+transDef.transisitonedTo);
+                    context.enter(transDef.transisitonedTo());
+                    isTransition = true;
                     break;
                 }
             }
-        }
-        //fixme: introduce ignored? because it would crap out on stuff like RegexLiteral
+            if (!isTransition) {
+                for (var actionDef : ACTIONS) {
+                    if (actionDef.queried().isInstance(value)) {
+                        log.debug("Taking action caused by "+actionDef.queried());
+                        actionDef.action()
+                            .accept(
+                                context.selectors(),
+                                value
+                            );
+                        isAction = true;
+                        break;
+                    }
+                }
+            }
+            //fixme: introduce ignored? because it would crap out on stuff like RegexLiteral
 //        if (!(isTransition || isAction)) {
 //            throw new NotImplementedException("Unknown query element: "+owner); //todo
 //        }
+        }
         return Callback.super.beforeChild(owner, field, value);
     }
 
     @Override
     public void afterChild(Object owner, String field, Record value, Object accumulator) {
-        for (var transDef: TRANSITIONS){
-            if (transDef.queried().isInstance(owner)){
-                context.exit(transDef.transisitonedTo());
-                break;
+        log.debug("Before "+"["+field+"] "+value+" @"+owner);
+        if (value instanceof ScopeSpec) {
+            var s = scopeFor((ScopeSpec) value);
+            log.debug("Closing "+s);
+            context.close(s);
+        } else {
+            for (var transDef : TRANSITIONS) {
+                if (transDef.queried().isInstance(value)) {
+                    log.debug("Exiting "+transDef.transisitonedTo());
+                    context.exit(transDef.transisitonedTo());
+                    break;
+                }
             }
         }
         Callback.super.afterChild(owner, field, value, accumulator);

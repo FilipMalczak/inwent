@@ -1,6 +1,5 @@
 package com.github.filipmalczak.inwent.impl.search.sql;
 
-import java.util.Collections;
 import java.util.Set;
 
 import static com.github.filipmalczak.inwent.impl.common.Misc.asSet;

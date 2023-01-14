@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-import static java.lang.System.currentTimeMillis;
 import static reactor.core.publisher.Mono.just;
 
 @Component

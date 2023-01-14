@@ -1,7 +1,7 @@
 package com.github.filipmalczak.inwent.impl.search.context.node;
 
-import com.github.filipmalczak.inwent.impl.search.context.node.selector.Selectors;
 import com.github.filipmalczak.inwent.impl.search.context.Transition;
+import com.github.filipmalczak.inwent.impl.search.context.node.selector.Selectors;
 import com.github.filipmalczak.inwent.impl.search.sql.QueriedTable;
 
 public interface Node {

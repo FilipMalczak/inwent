@@ -4,7 +4,6 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -15,30 +14,30 @@ public class RecordVisitor {
     }
 
     public void visitAnything(Object owner, String field, Object value, Callback callback){
-        log.debug("Visit anything: "+owner+" :: "+field+" -> "+value);
+        log.debug("Visit anything: "+"["+field+"] "+value+" @"+owner);
         if (value == null){
             log.debug("Visit null: "+owner+"+ :: "+field);
             callback.onNull(owner, field);
         } else  if (value instanceof Record) {
-            log.debug("Before record: "+owner+" :: "+field+" -> "+value);
+            log.debug("Before record: "+"["+field+"] "+value+" @"+owner);
             var acc = callback.beforeChild(owner, field, (Record) value);
             visitRecordFields((Record) value, callback);
-            log.debug("After record: "+owner+" :: "+field+" -> "+value);
+            log.debug("After record: "+"["+field+"] "+value+" @"+owner);
             callback.afterChild(owner, field, (Record) value, acc);
         } else if (value instanceof Collection<?>){
-            log.debug("Before collection: "+owner+" :: "+field+" -> "+value);
+            log.debug("Before collection: "+"["+field+"] "+value+" @"+owner);
             var acc = callback.beforeCollection(owner, field, (Collection) value);
             visitCollectionItems((Collection) value, callback);
-            log.debug("After collection: "+owner+" :: "+field+" -> "+value);
+            log.debug("After collection: "+"["+field+"] "+value+" @"+owner);
             callback.afterCollection(owner, field, (Collection) value, acc);
         } else if (value instanceof Map){
-            log.debug("Before map: "+owner+" :: "+field+" -> "+value);
+            log.debug("Before map: "+"["+field+"] "+value+" @"+owner);
             var acc = callback.beforeMap(owner, field, (Map) value);
             visitMapEntries((Map) value, callback);
-            log.debug("After map: "+owner+" :: "+field+" -> "+value);
+            log.debug("After map: "+"["+field+"] "+value+" @"+owner);
             callback.afterMap(owner, field, (Map) value, acc);
         } else {
-            log.debug("Visit value: "+owner+" :: "+field+" -> "+value);
+            log.debug("Visit value: "+"["+field+"] "+value+" @"+owner);
             callback.onValue(owner, field, value);
         }
     }

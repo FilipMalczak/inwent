@@ -1,6 +1,5 @@
 package com.github.filipmalczak.inwent.impl.common;
 
-import com.github.filipmalczak.inwent.api.model.domain.tag.NamespaceDescriptor;
 import com.github.filipmalczak.inwent.impl.common.exceptions.AlreadyExistsException;
 import com.github.filipmalczak.inwent.impl.common.exceptions.MissingException;
 import org.springframework.http.HttpStatusCode;

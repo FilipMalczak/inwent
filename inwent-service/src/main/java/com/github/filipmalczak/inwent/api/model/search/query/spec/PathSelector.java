@@ -5,14 +5,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(
     anyOf = {
-        GenericAllSelector.AllPathSelector.class,
-        GenericAnySelector.AnyPathSelector.class,
-        GenericNotSelector.NotPathSelector.class,
         RegexLiteral.class,
         StringValueLiteral.class
     }
 )
 public sealed interface PathSelector<T extends PathSelector<T>>
     extends Selector<T>
-    permits GenericAllSelector.AllPathSelector, GenericAnySelector.AnyPathSelector, GenericNotSelector.NotPathSelector, RegexLiteral, StringValueLiteral {
+    permits RegexLiteral, StringValueLiteral {
 }

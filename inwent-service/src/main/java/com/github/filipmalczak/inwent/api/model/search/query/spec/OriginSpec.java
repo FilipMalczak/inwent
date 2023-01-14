@@ -5,14 +5,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(
     anyOf = {
-        GenericAllSpec.AllOriginSpec.class,
-        GenericAnySpec.AnyOriginSpec.class,
-        GenericNotSpec.NotOriginSpec.class,
+        AllSpec.AllOriginSpec.class,
+        AnySpec.AnyOriginSpec.class,
+        NotSpec.NotOriginSpec.class,
         OriginLiteral.class,
         OriginPredicate.class
     }
 )
 public sealed interface OriginSpec<T extends OriginSpec<T>>
     extends HitSelector<T>, Spec<T>
-    permits GenericAllSpec.AllOriginSpec, GenericAnySpec.AnyOriginSpec, GenericNotSpec.NotOriginSpec, OriginLiteral, OriginPredicate {
+    permits AllSpec.AllOriginSpec, AnySpec.AnyOriginSpec, NotSpec.NotOriginSpec, OriginLiteral, OriginPredicate {
 }

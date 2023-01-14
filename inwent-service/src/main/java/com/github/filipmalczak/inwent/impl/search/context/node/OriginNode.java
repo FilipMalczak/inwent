@@ -2,7 +2,10 @@ package com.github.filipmalczak.inwent.impl.search.context.node;
 
 import com.github.filipmalczak.inwent.impl.search.context.node.selector.SelectorNotSupportedException;
 import com.github.filipmalczak.inwent.impl.search.context.node.selector.Selectors;
-import com.github.filipmalczak.inwent.impl.search.sql.*;
+import com.github.filipmalczak.inwent.impl.search.sql.Condition;
+import com.github.filipmalczak.inwent.impl.search.sql.Explicit;
+import com.github.filipmalczak.inwent.impl.search.sql.QueriedTable;
+import com.github.filipmalczak.inwent.impl.search.sql.SqlStr;
 
 public class OriginNode implements TerminalNode {
     private static final QueriedTable ORIGIN_TABLE = new QueriedTable("origin", "o");

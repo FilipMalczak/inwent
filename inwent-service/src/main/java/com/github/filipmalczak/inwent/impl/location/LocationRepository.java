@@ -1,7 +1,6 @@
 package com.github.filipmalczak.inwent.impl.location;
 
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Mono;
 
 public interface LocationRepository extends R2dbcRepository<LocationData, Long> {

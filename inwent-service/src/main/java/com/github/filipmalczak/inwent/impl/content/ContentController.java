@@ -4,15 +4,12 @@ import com.github.filipmalczak.inwent.api.domain.ContentAPI;
 import com.github.filipmalczak.inwent.api.model.domain.content.ContentDescriptor;
 import com.github.filipmalczak.inwent.impl.common.Issues;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
-
-import static reactor.core.publisher.Mono.error;
 
 @RestController
 @FieldDefaults(level = AccessLevel.PRIVATE)

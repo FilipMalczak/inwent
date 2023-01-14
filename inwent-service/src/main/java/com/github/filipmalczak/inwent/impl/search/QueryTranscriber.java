@@ -1,17 +1,14 @@
 package com.github.filipmalczak.inwent.impl.search;
 
 import com.github.filipmalczak.inwent.api.model.search.query.HitQuery;
-import com.github.filipmalczak.inwent.impl.common.visitor.GenericRecordVisitor;
 import com.github.filipmalczak.inwent.impl.common.visitor.RecordVisitor;
-import com.github.filipmalczak.inwent.impl.search.context.node.HitNode;
 import com.github.filipmalczak.inwent.impl.search.context.TranscriptionContext;
+import com.github.filipmalczak.inwent.impl.search.context.node.HitNode;
 import com.github.filipmalczak.inwent.impl.search.sql.All;
 import com.github.filipmalczak.inwent.impl.search.sql.Sqlable;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
-
-import static java.util.stream.Collectors.joining;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
@@ -32,7 +29,7 @@ public class QueryTranscriber implements Sqlable {
 
     private String render(TranscriptionContext context){
         //todo could be static
-        return "SELECT * FROM "+context.getSearchSpace().toSql()+" WHERE "+new All(context.getCriteria()).toSql()+";"; //todo is ; needed?
+        return "SELECT * FROM "+context.getSearchSpace().toSql()+" WHERE "+context.getSearchScope().toSql()+";"; //todo is ; needed?
     }
 
     private void init(){

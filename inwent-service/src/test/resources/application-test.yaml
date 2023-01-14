@@ -1,5 +1,0 @@
-logging:
-  level:
-    com.github.filipmalczak.inwent:
-      impl.common.visitor.RecordVisitor: debug
-      impl.search.QueryBuildingCallback: debug

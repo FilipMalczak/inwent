@@ -5,14 +5,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(
     anyOf = {
-        GenericAllSpec.AllNamespaceSpec.class,
-        GenericAnySpec.AnyNamespaceSpec.class,
-        GenericNotSpec.NotNamespaceSpec.class,
+        AllSpec.AllNamespaceSpec.class,
+        AnySpec.AnyNamespaceSpec.class,
+        NotSpec.NotNamespaceSpec.class,
         NamespaceLiteral.class,
         NamespacePredicate.class
     }
 )
 public sealed interface NamespaceSpec<T extends NamespaceSpec<T>>
     extends TagSelector<T>, Spec<T>
-    permits GenericAllSpec.AllNamespaceSpec, GenericAnySpec.AnyNamespaceSpec, GenericNotSpec.NotNamespaceSpec, NamespaceLiteral, NamespacePredicate {
+    permits AllSpec.AllNamespaceSpec, AnySpec.AnyNamespaceSpec, NotSpec.NotNamespaceSpec, NamespaceLiteral, NamespacePredicate {
 }
