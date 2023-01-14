@@ -2,10 +2,7 @@ package com.github.filipmalczak.inwent.impl.search.context.node;
 
 import com.github.filipmalczak.inwent.impl.search.context.node.selector.SelectorNotSupportedException;
 import com.github.filipmalczak.inwent.impl.search.context.node.selector.Selectors;
-import com.github.filipmalczak.inwent.impl.search.sql.Condition;
-import com.github.filipmalczak.inwent.impl.search.sql.Explicit;
-import com.github.filipmalczak.inwent.impl.search.sql.QueriedTable;
-import com.github.filipmalczak.inwent.impl.search.sql.Sql;
+import com.github.filipmalczak.inwent.impl.search.sql.*;
 import lombok.Getter;
 import lombok.Value;
 import lombok.experimental.Accessors;
@@ -25,7 +22,7 @@ public class NamespaceNode implements TerminalNode {
         return new Selectors() {
             @Override
             public Condition id(String id) {
-                return new Explicit(table().column("id"), EQUALS, new Sql(id));
+                return new Explicit(table().column("id"), EQUALS, new SqlStr(id));
             }
 
             @Override
@@ -35,7 +32,7 @@ public class NamespaceNode implements TerminalNode {
 
             @Override
             public Condition path(Condition.Operator operator, String rhs) {
-                return new Explicit(table().column("namespace_path"), operator, new Sql(rhs));
+                return new Explicit(table().column("namespace_path"), operator, new SqlStr(rhs));
             }
 
             @Override

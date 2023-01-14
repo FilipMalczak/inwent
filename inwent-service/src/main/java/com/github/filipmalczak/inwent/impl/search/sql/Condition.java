@@ -8,7 +8,7 @@ public sealed interface Condition extends Sqlable permits All, Any, Explicit, No
     @FieldDefaults(level = AccessLevel.PRIVATE)
     @AllArgsConstructor
     enum Operator implements Sqlable {
-        EQUALS("="), MATCHES("LIKE");
+        EQUALS("="), MATCHES("~");
 
         String sql;
 

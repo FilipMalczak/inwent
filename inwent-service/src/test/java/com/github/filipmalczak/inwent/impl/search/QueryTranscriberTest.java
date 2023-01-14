@@ -23,7 +23,7 @@ class QueryTranscriberTest {
                 )
             )
         );
-        var expectation = "SELECT * FROM hit h JOIN tag t0 ON h.tag_id = t0.id WHERE (t0.tag_name = howdy);";
+        var expectation = "SELECT * FROM hit h JOIN tag t0 ON h.tag_id = t0.id WHERE (t0.tag_name = \"howdy\");";
         assertEquals(expectation, t.getSql());
     }
 
@@ -43,7 +43,7 @@ class QueryTranscriberTest {
                 )
             )
         );
-        var expectation = "SELECT * FROM hit h JOIN tag t0 ON h.tag_id = t0.id WHERE (t0.tag_name LIKE ma.*ma);";
+        var expectation = "SELECT * FROM hit h JOIN tag t0 ON h.tag_id = t0.id WHERE (t0.tag_name ~ \"ma.*ma\");";
         assertEquals(expectation, t.getSql());
     }
 }

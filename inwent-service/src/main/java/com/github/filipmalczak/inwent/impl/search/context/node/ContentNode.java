@@ -2,11 +2,8 @@ package com.github.filipmalczak.inwent.impl.search.context.node;
 
 import com.github.filipmalczak.inwent.impl.search.context.node.selector.SelectorNotSupportedException;
 import com.github.filipmalczak.inwent.impl.search.context.node.selector.Selectors;
-import com.github.filipmalczak.inwent.impl.search.sql.Condition;
+import com.github.filipmalczak.inwent.impl.search.sql.*;
 import com.github.filipmalczak.inwent.impl.search.sql.Condition.Operator;
-import com.github.filipmalczak.inwent.impl.search.sql.Explicit;
-import com.github.filipmalczak.inwent.impl.search.sql.QueriedTable;
-import com.github.filipmalczak.inwent.impl.search.sql.Sql;
 
 import static com.github.filipmalczak.inwent.impl.search.sql.Condition.Operator.EQUALS;
 
@@ -23,13 +20,13 @@ public class ContentNode implements TerminalNode {
         return new Selectors() {
             @Override
             public Condition id(String id) {
-                return new Explicit(CONTENT_TABLE.column("id"), EQUALS, new Sql(id));
+                return new Explicit(CONTENT_TABLE.column("id"), EQUALS, new SqlStr(id));
             }
 
             @Override
             public Condition name(Operator operator, String rhs) {
                 //fixme name/title???
-                return new Explicit(CONTENT_TABLE.column("title"), operator, new Sql(rhs));
+                return new Explicit(CONTENT_TABLE.column("title"), operator, new SqlStr(rhs));
             }
 
             @Override

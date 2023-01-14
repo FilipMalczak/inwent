@@ -5,10 +5,7 @@ import com.github.filipmalczak.inwent.impl.search.context.InvalidTransitionExcep
 import com.github.filipmalczak.inwent.impl.search.context.Transition;
 import com.github.filipmalczak.inwent.impl.search.context.node.selector.SelectorNotSupportedException;
 import com.github.filipmalczak.inwent.impl.search.context.node.selector.Selectors;
-import com.github.filipmalczak.inwent.impl.search.sql.Condition;
-import com.github.filipmalczak.inwent.impl.search.sql.Explicit;
-import com.github.filipmalczak.inwent.impl.search.sql.QueriedTable;
-import com.github.filipmalczak.inwent.impl.search.sql.Sql;
+import com.github.filipmalczak.inwent.impl.search.sql.*;
 import lombok.Getter;
 import lombok.Value;
 import lombok.experimental.Accessors;
@@ -26,12 +23,12 @@ public class TagNode implements Node {
         return new Selectors() {
             @Override
             public Condition id(String id) {
-                return new Explicit(table().column("id"), Condition.Operator.EQUALS, new Sql(id));
+                return new Explicit(table().column("id"), Condition.Operator.EQUALS, new SqlStr(id));
             }
 
             @Override
             public Condition name(Condition.Operator operator, String rhs) {
-                return new Explicit(table().column("tag_name"), operator, new Sql(rhs));
+                return new Explicit(table().column("tag_name"), operator, new SqlStr(rhs));
             }
 
             @Override
