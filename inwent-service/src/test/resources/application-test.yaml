@@ -1,0 +1,7 @@
+spring:
+  boot:
+    admin:
+      enabled: false
+  r2dbc:
+#    notice "tc:" and see this: https://www.testcontainers.org/modules/databases/r2dbc/
+    url: r2dbc:tc:postgresql://localhost:${tc.port}/inwent?TC_IMAGE_TAG=15.1
