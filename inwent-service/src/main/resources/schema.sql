@@ -32,6 +32,17 @@ CREATE TABLE IF NOT EXISTS tag(
     FOREIGN KEY (namespace_id) REFERENCES namespace(id)
 );
 
+CREATE TABLE IF NOT EXISTS hit(
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    content_id SERIAL NOT NULL,
+    origin_id UUID NOT NULL,
+    tag_id UUID NOT NULL,
+    FOREIGN KEY (content_id) REFERENCES content(id),
+    FOREIGN KEY (origin_id) REFERENCES origin(id),
+    FOREIGN KEY (tag) REFERENCES tag(id)
+);
+
 --todo indexes!
 --todo constraint on tag.parent_id so that parent.namespace_id==this.namespace_id
 --todo constraint on tag.tag_name - unique in scope of namespace
+--todo constraint on

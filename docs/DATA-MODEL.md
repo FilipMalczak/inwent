@@ -1,7 +1,5 @@
 # Data model
 
-Each name is a Neo4J node type.
-
 ```
                                              Name
                                                ▲ 1

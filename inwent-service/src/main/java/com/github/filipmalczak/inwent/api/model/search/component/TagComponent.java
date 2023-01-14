@@ -4,8 +4,8 @@ public enum TagComponent {
     ID,
     NAME,
     NAMESPACE,
-    PATH,
+//    PATH,
     PARENT_ID,
     PARENT_NAME,
-    PARENT_PATH
+//    PARENT_PATH
 }

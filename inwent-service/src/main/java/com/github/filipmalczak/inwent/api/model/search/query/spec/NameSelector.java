@@ -1,16 +1,18 @@
 package com.github.filipmalczak.inwent.api.model.search.query.spec;
 
+import com.github.filipmalczak.inwent.api.model.search.query.meta.Selector;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(
     anyOf = {
-        AllSelectors.AllNameSelector.class,
-        AnySelector.AnyNameSelector.class,
-        NotSelector.NotNameSelector.class,
+        GenericAllSelector.AllNameSelector.class,
+        GenericAnySelector.AnyNameSelector.class,
+        GenericNotSelector.NotNameSelector.class,
         RegexLiteral.class,
         StringValueLiteral.class
     }
 )
-public sealed interface NameSelector
-    permits AllSelectors.AllNameSelector, AnySelector.AnyNameSelector, NotSelector.NotNameSelector, RegexLiteral, StringValueLiteral {
+public sealed interface NameSelector<T extends NameSelector<T>>
+    extends Selector<T>
+    permits GenericAllSelector.AllNameSelector, GenericAnySelector.AnyNameSelector, GenericNotSelector.NotNameSelector, RegexLiteral, StringValueLiteral {
 }
